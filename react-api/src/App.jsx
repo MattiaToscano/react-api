@@ -8,10 +8,13 @@ function App() {
   const fetchActress = () => {
     axios.get('https://lanciweb.github.io/demo/api/actresses/')
       .then(response => {
-        setActress(response.data.results);
+
+        console.log('Raw API response:', response);
+        console.log('Response data:', response.data);
+        setActress(response.data);
       })
       .catch(error => {
-        console.log(`Error fetching data: ${error}`);
+        console.error(`Error fetching data: ${error}`);
       });
   };
 
@@ -23,18 +26,10 @@ function App() {
     <>
       <div className="container">
         <div className="card">
-          {actress.map((actress, index) => (
-            <div key={index} className="actress-card">
-              <h2>{actress.name}</h2>
-              {actress.image && <img src={actress.image} alt={actress.name} />}
-              <p>Età:{actress.age}</p>
-              <p>Film:{actress.movies?.join(', ')}</p>
-
-            </div>
-          ))}
 
         </div>
       </div>
+
     </>
   );
 }
