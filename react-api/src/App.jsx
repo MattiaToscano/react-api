@@ -6,13 +6,14 @@ function App() {
   const [actress, setActress] = useState([]);
 
   const fetchActress = () => {
-    axios.get('https://api.themoviedb.org/3/person/popular')
+    axios.get('https://lanciweb.github.io/demo/api/actresses/')
       .then(response => {
         setActress(response.data.results);
       })
-      .catch(error) => {
-    console.log(error);
-  }
+      .catch(error => {
+        console.log(`Error fetching data: ${error}`);
+      });
+  };
 
   useEffect(() => {
     fetchActress();
@@ -21,15 +22,21 @@ function App() {
   return (
     <>
       <div className="container">
-        {actress.map((person) => (
-          <div key={person.id}>
-            {console.log(person)}
-            <p>{person.name}</p>
-          </div>
-        ))}
+        <div className="card">
+          {actress.map((actress, index) => (
+            <div key={index} className="actress-card">
+              <h2>{actress.name}</h2>
+              {actress.image && <img src={actress.image} alt={actress.name} />}
+              <p>Età:{actress.age}</p>
+              <p>Film:{actress.movies?.join(', ')}</p>
+
+            </div>
+          ))}
+
+        </div>
       </div>
     </>
-  )
+  );
 }
 
 export default App
