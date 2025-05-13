@@ -25,11 +25,24 @@ function App() {
   return (
     <>
       <div className="container">
-        <div className="card">
+        <h1 className="main-title">Actress List</h1>
+        <div className="actress-grid">
+          <div key={index} className="actress-card">
+            <h2 className="actress-name"></h2>
+            <div className="actress-image">
+            </div>
+            <div className="actress-details">
 
+              <div className="biography">
+              </div>
+              <div className="awards">
+                <ul>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
     </>
   );
 }
